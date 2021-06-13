@@ -11,6 +11,7 @@ export class App extends Component {
     this.state = {
       cityName: '',
       cityData: {},
+      displayData: false
     }
   };
 
@@ -22,6 +23,7 @@ export class App extends Component {
     this.setState({
       cityName: city,
       cityData: axiosResponse.data[0],
+      displayData: true
     })
     console.log(this.state);
   }
@@ -31,7 +33,7 @@ export class App extends Component {
       <div>
         <h1>City Explorer</h1>
         <Cityform onSubmit={this.handelSubmit} />
-        <RenderCity data ={this.state.cityData}/>
+        <RenderCity show={this.state.displayData} data={this.state.cityData} />
       </div>
     )
   }
