@@ -6,7 +6,7 @@ export class Cityform extends Component {
   render() {
     return (
       <Form onSubmit={this.props.onSubmit}>
-        <Form.Group controlId="nameOfCity" >
+        <Form.Group controlId="formBasicEmail">
           <Form.Label>City Name: </Form.Label>
           <Form.Control type="text" placeholder="Enter name" />
           <br></br>
