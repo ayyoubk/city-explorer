@@ -20,7 +20,7 @@ img {
 #root{
   background-color: rgb(5, 37, 16);
   color: aliceblue;
-  height: 100vh;
+  min-height: 800px;
 }
 #root h1{
   text-align: center;
