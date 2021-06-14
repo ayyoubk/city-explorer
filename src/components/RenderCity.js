@@ -20,7 +20,7 @@ export class RenderCity extends Component {
           this.props.check &&
 
           <Alert variant='danger'>
-            Error 404 !! .. Please Try again
+            {this.props.msg} .. Please Try Again !!
           </Alert>
         }
 
