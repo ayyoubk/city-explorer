@@ -10,7 +10,7 @@ export class Cityform extends Component {
           <Form.Label>City Name: </Form.Label>
           <Form.Control type="text" placeholder="Enter name" />
           <br></br>
-          <Button variant="primary" type="submit">
+          <Button variant="light" type="submit">
             Explore!
           </Button>
         </Form.Group>

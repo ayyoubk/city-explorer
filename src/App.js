@@ -12,13 +12,16 @@ export class App extends Component {
     this.state = {
       locatKey: process.env.REACT_APP_KEY,
       serverUrl: process.env.REACT_APP_URL,
-
       cityName: "",
       cityData: {},
+      lat: "",
+      lon: "",
       displayData: false,
       displayError: false,
       errorMsg: "",
       weather: {},
+      movies: {},
+
     };
   }
 
@@ -26,20 +29,32 @@ export class App extends Component {
     e.preventDefault();
     try {
       const city = e.target.nameOfCity.value;
-      const axiosResponse = await axios.get(
-        `https://us1.locationiq.com/v1/search.php?key=${this.state.locatKey}&q=${city} &format=json`
-      );
-      const weatherResponse = await axios.get(
-        `${this.state.serverUrl}/weather`
-      );
-      console.log(weatherResponse.data);
+      
+      await axios.get(
+        `https://us1.locationiq.com/v1/search.php?key=${this.state.locatKey}&q=${city}&format=json`
+        ).then(axiosResponse => {
 
-      this.setState({
-        cityName: city,
+        this.setState({
+          cityName: city,
         cityData: axiosResponse.data[0],
-        displayData: true,
-        weather: weatherResponse.data,
+        lat: axiosResponse.data[0].lat,
+        lon: axiosResponse.data[0].lon,
+        });  
+        axios.get(`${process.env.REACT_APP_URL}/weather?lat=${this.state.lat}&lon=${this.state.lon}`).then(weatherResponse => {
+          this.setState({
+            weather: weatherResponse.data,
+            displayData: true
+          })
+  
+        });
+        axios.get(`${process.env.REACT_APP_URL}/movies?cityname=${this.state.cityName}&include_adult=false`).then(moviesResponse => {
+          this.setState({
+            movies: moviesResponse.data,
+          })
+          
+        });
       });
+    
     } catch (err) {
       this.setState({
         displayError: true,
@@ -49,8 +64,9 @@ export class App extends Component {
   };
 
   render() {
+
     return (
-      <div>
+      <div id='main-cont'>
         <h1>City Explorer</h1>
         <Cityform onSubmit={this.handelSubmit} />
         <RenderCity
@@ -60,6 +76,9 @@ export class App extends Component {
           data={this.state.cityData}
           msg={this.state.errorMsg}
           weather={this.state.weather}
+          city={this.state.cityName}
+          moviesData={this.state.movies}
+
         />
       </div>
     );
