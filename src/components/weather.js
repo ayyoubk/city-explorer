@@ -16,7 +16,11 @@ export class Weather extends Component {
           <ListGroup.Item variant="dark">{this.state.data.city_name} </ListGroup.Item>
           <ListGroup.Item variant="dark">{this.state.data.lat}</ListGroup.Item>
           <ListGroup.Item variant="dark">{this.state.data.lon}</ListGroup.Item>
-          <ListGroup.Item variant="dark">{this.state.data.timezone}</ListGroup.Item>
+          {
+            this.state.data.data.map(element => {
+              return <ListGroup.Item variant="dark">{element.valid_date} {element.temp}C {element.weather.description} </ListGroup.Item>
+            })
+          }
         </ListGroup>
       </div>
     );
