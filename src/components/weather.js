@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-
+import WeatherDay from "./WeatherDay";
 export class Weather extends Component {
   constructor(props) {
     super(props);
@@ -17,12 +17,9 @@ export class Weather extends Component {
           <ListGroup.Item action href="https://www.weatherbit.io/api">
             {this.state.cityName} Weather <br></br>by weatherbit.io
           </ListGroup.Item>
-          {this.state.data.map((element) => {
+          {this.state.data.map((day) => {
             return (
-              <ListGroup.Item variant="dark">
-                📅 {element.date} / {element.description}<br></br> 🌞Day: {element.maxTemp} C 🌑 Night:{" "}
-                {element.minTemp} C
-              </ListGroup.Item>
+              <WeatherDay singleday={day}/>
             );
           })}
         </ListGroup>
