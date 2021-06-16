@@ -8,8 +8,8 @@ export class Cityform extends Component {
       <Form onSubmit={this.props.onSubmit}>
         <Form.Group controlId="nameOfCity" >
           <Form.Label>City Name: </Form.Label>
-          <Form.Control type="text" placeholder="Enter name" />
           <br></br>
+          <Form.Control type="text" placeholder="Enter name" />
           <Button variant="light" type="submit">
             Explore!
           </Button>

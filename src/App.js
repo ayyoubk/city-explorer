@@ -67,7 +67,7 @@ export class App extends Component {
 
     return (
       <div id='main-cont'>
-        <h1>City Explorer</h1>
+        <h1 id='header-text'>City Explorer</h1>
         <Cityform onSubmit={this.handelSubmit} />
         <RenderCity
           mykey={this.state.locatKey}

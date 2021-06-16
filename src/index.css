@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 html, body
 {
   width: 100%;
@@ -30,6 +31,11 @@ code {
   margin-left: 10%;
   margin-right: 10%;
 }
+#header-text{
+  float: left;
+  display: inline-block;
+}
+
 img {
   width: 100%;
   border-radius: 30px;
@@ -37,12 +43,28 @@ img {
 }
 #root h1{
   text-align: center;
+  margin-top: 20px;
+  font-family: 'Carter One', cursive;
+  font-weight: bolder;
+
+  margin-left: 10px;
 }
-#root form{
-  width: 30%;
+#nameOfCity{
+  clear: both;
+  width: 70%;
+display: inline-block;  
+}
+#root form {
+  float: right;
+  margin-top: 10px;
+  
+}
+#root form button{
+  float: right;
   
 }
 #dataAlert{
+  clear: both;
   width: 100%;
 
   border-radius: 30px;
