@@ -17,6 +17,7 @@ export class RenderCity extends Component {
       <div>
         {this.props.show && (
           <div>
+            <small className="text-muted">{this.props.duration}</small>
             <Alert variant="success" id="dataAlert">
               City Name : {this.props.data.display_name} <br></br> Location :{" "}
               {this.props.data.lat}, {this.props.data.lon}

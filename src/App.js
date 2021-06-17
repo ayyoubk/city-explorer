@@ -21,7 +21,8 @@ export class App extends Component {
       errorMsg: "",
       weather: {},
       movies: {},
-
+      start: 0,
+      duration:0
     };
   }
 
@@ -29,7 +30,7 @@ export class App extends Component {
     e.preventDefault();
     try {
       const city = e.target.nameOfCity.value;
-      
+      this.setState({start:Date.now()})
       await axios.get(
         `https://us1.locationiq.com/v1/search.php?key=${this.state.locatKey}&q=${city}&format=json`
         ).then(axiosResponse => {
@@ -43,7 +44,9 @@ export class App extends Component {
         axios.get(`${process.env.REACT_APP_URL}/weather?lat=${this.state.lat}&lon=${this.state.lon}`).then(weatherResponse => {
           this.setState({
             weather: weatherResponse.data,
-            displayData: true
+            displayData: true,
+            duration:(Date.now()-this.state.start)
+            
           })
   
         });
@@ -78,6 +81,7 @@ export class App extends Component {
           weather={this.state.weather}
           city={this.state.cityName}
           moviesData={this.state.movies}
+          duration={this.state.duration}
 
         />
       </div>
